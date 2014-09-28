@@ -1,0 +1,9 @@
+town2 cost 1 way from first to this town 1 
+town4 cost 2 way from first to this town 1 
+town3 cost 6 way from first to this town 1 4 
+town5 cost 7 way from first to this town 1 4 
+town6 cost 8 way from first to this town 1 4 
+town7 cost 9 way from first to this town 1 4 
+town8 cost 10 way from first to this town 1 4 
+town10 cost 16 way from first to this town 1 4 5 
+town9 cost 18 way from first to this town 1 4 6 
