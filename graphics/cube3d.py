@@ -46,53 +46,53 @@ def init():
 def displayOrtho():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    gluLookAt(0, 0, 3, 3, 3, 3, 0, 0, 1)
-    glTranslatef(3, 3, 3)
+    gluLookAt(0, 0, 0, 6, 6, 0, 0, 0, 1)
+    glTranslatef(6, 6, 0)
     glRotatef(45, 0, 0, 1)
     drawCube()
     glMatrixMode(GL_PROJECTION)
-    glOrtho(-2, 2, -2, 2, 0, 10)
+    glOrtho(-1.9, 1.9, -1.9, 1.9, 0, 10)
     glMatrixMode(GL_MODELVIEW)
-
     glutSwapBuffers()
 
 
 def displayPersp1():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    gluLookAt(0, 0, 3, 3, 3, 3, 0, 0, 1)
-    glTranslatef(3, 3, 3)
-    glRotatef(45,0,0,1)
+    gluLookAt(0, 0, 0, 6, 6, 0, 0, 0, 1)
+    glTranslatef(6, 6, 0)
+    glRotatef(45, 0, 0, 1)
+    drawCube()
     drawCube()
     glMatrixMode(GL_PROJECTION)
-    glFrustum(-2, 2, -2, 2, 4, 6)
+    glFrustum(-0.5, 0.5, -0.5, 0.5, 2, 10)
     glMatrixMode(GL_MODELVIEW)
     glutSwapBuffers()
 
 def displayPersp2():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    gluLookAt(0, 0, 3, 3, 3, 3, 0, 0, 1)
-    glTranslatef(3, 3, 3)
-    glRotatef(45,0,0,1)
+    gluLookAt(2, 2, 0, 6, 6, 0, 0, 0, 1)
+    glTranslatef(6, 6, 0)
+    glRotatef(45, 0, 0, 1)
+    drawCube()
     drawCube()
     glMatrixMode(GL_PROJECTION)
-    glFrustum(-2, 2, -2, 2, 4.5, 6)
+    glFrustum(-0.8, 0.8, -0.8, 0.8, 2, 10)
     glMatrixMode(GL_MODELVIEW)
-
     glutSwapBuffers()
 
 def displayPersp3():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    gluLookAt(0, 0, 3, 3, 3, 3, 0, 0, 1)
-    glTranslatef(3, 3, 3)
-    glRotatef(45,0,0,1)
+    gluLookAt(4, 4, 0, 6, 6, 0, 0, 0, 1)
+    glTranslatef(6, 6, 0)
+    glRotatef(45, 0, 0, 1)
+    drawCube()
     drawCube()
     glMatrixMode(GL_PROJECTION)
-    glFrustum(-2, 2, -2, 2, 5, 6)
+    glFrustum(-1.8, 1.8, -1.8, 1.8, 2, 10)
     glMatrixMode(GL_MODELVIEW)
-
     glutSwapBuffers()
 
 def main():
@@ -108,14 +108,14 @@ def main():
 
     init()
     glutInitWindowSize(500, 500)
-    glutInitWindowPosition(0, 500)
+    glutInitWindowPosition(500, 0)
     glutCreateWindow("2")
     glutDisplayFunc(displayPersp1)
     displayPersp1()
 
     init()
     glutInitWindowSize(500, 500)
-    glutInitWindowPosition(500, 0)
+    glutInitWindowPosition(0, 500)
     glutCreateWindow("3")
     glutDisplayFunc(displayPersp2)
     displayPersp2()
@@ -126,7 +126,6 @@ def main():
     glutInitWindowPosition(500, 500)
     glutCreateWindow("4")
     glutDisplayFunc(displayPersp3)
-    displayPersp3()
 
     glutMainLoop()
 
