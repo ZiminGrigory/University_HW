@@ -5,12 +5,16 @@ using namespace std;
 int getNearest(const int* const array, int n, const int number)
 {
 	auto a = array;
-	int i = n / 2;
+	int A(0), B(n-1);
+	int i = (B-A) / 2;
 	while (!(a[i] <= number && number <= a[i+1]) && !(i == 0) && !(i == n-2))
-		if (a[i] <= number)
-			i += (n-i)/2;
-		else
-			i = i/2;
+		if (a[i] <= number) {
+			A = i;
+			i += (B-A) / 2;
+		} else {
+			B = i;
+			i = (B-A) / 2;
+		}
 	return abs(a[i] - number) <= abs(a[i+1] - number) ? a[i]: a[i+1];
 }
 
@@ -60,6 +64,10 @@ int main()
 
 	const int a[10] {-4, -2, 0, 1, 3, 5, 7, 10};
 	cout << (getNearest(a, 8, -3) == -4) <<  "\n" ;
+	cout << (getNearest(a, 8, -10) == -4) <<  "\n" ;
+	cout << (getNearest(a, 8, 10) == 10) <<  "\n" ;
+	cout << (getNearest(a, 8, 100) == 10) <<  "\n" ;
+	cout << (getNearest(a, 8, 2) == 1) <<  "\n" ;
 
 	return 0;
 }
