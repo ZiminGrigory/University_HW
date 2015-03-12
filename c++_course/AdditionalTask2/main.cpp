@@ -68,6 +68,7 @@ int main()
 	cout << (getNearest(a, 8, 10) == 10) <<  "\n" ;
 	cout << (getNearest(a, 8, 100) == 10) <<  "\n" ;
 	cout << (getNearest(a, 8, 2) == 1) <<  "\n" ;
+	cout << (getNearest(a, 8, 1) == 1) <<  "\n" ;
 
 	return 0;
 }
