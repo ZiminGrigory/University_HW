@@ -109,6 +109,27 @@ void reverseList(List<T> *lst) {
 	lst->setNewTail(newTail->next);
 }
 
+template <typename T>
+void reverseList2(List<T> *lst) {
+	auto p = lst->getHead();
+	auto p1 = p->next;
+	auto p2 = p->next->next;
+	Node<T> *newTail(p);
+	Node<T> *newHead(p1);
+	newHead->next = p;
+	while (p2) {
+		p = p1;
+		p1 = p2;
+		p2 = p2->next;
+		newHead = p1;
+		newHead->next = p;
+	}
+
+	newTail->next = nullptr;
+	lst->setNewHead(newHead);
+	lst->setNewTail(newTail->next);
+}
+
 int main()
 {
 	List<int> *lst = new List<int>;
@@ -129,7 +150,7 @@ int main()
 	//cout << reverseLst->getHead()->value;
 
 	//4
-	reverseList(lst);
+	reverseList2(lst);
 
 	delete lst;
 	delete reverseLst;
