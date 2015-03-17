@@ -13,7 +13,7 @@ public:
 		destr(head);
 	}
 
-	void add(T elem) {
+	void add(const T &elem) {
 		if (!head) {
 			head = new Node{elem, nullptr, nullptr};
 			return;
@@ -35,7 +35,7 @@ public:
 		}
 	}
 
-	void printTree() {
+	void printTree() const {
 		cout << "Tree\n";
 		queue<Node *> q;
 		if (head)
@@ -52,7 +52,7 @@ public:
 		}
 	}
 
-	void printTreeWithDepths() {
+	void printTreeWithDepths() const {
 		cout << "Tree\n";
 		queue<pair<Node *, int> > q;
 		if (head)
@@ -63,7 +63,7 @@ public:
 			Node *v = p.first;
 			int depth = p.second;
 			q.pop();
-			cout << " " << v->value << "depth = " << depth;
+			cout << " " << v->value << "depth = " << depth << "; ";
 			if (v->left)
 				q.push(make_pair(v->left, depth + 1));
 			if (v->right)
@@ -71,7 +71,7 @@ public:
 		}
 	}
 
-	bool hasElBetween20_30() {
+	bool hasElBetween20_30() const {
 		return hasElBetween20_30(head);
 	}
 
@@ -86,14 +86,12 @@ private:
 	};
 
 	void destr(Node *v) {
-		if (v->left)
-			destr(v->left);
-		if (v->right)
-			destr(v->right);
+		destr(v->left);
+		destr(v->right);
 		delete v;
 	}
 
-	bool hasElBetween20_30(Node *v) {
+	bool hasElBetween20_30(const Node * const v) const{
 		if (!v) {
 			return false;
 		}
@@ -104,10 +102,6 @@ private:
 
 		if (v->value > 30) {
 			return hasElBetween20_30(v->right);
-		}
-
-		if (v->value > 19) {
-			return hasElBetween20_30(v->left);
 		}
 
 		if (v->value < 20) {
