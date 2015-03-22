@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <string.h>
-#include <vector>
 
 using namespace std;
 
@@ -11,32 +10,42 @@ class mString {
 public:
 	mString(const char *s = "")
 	{
-		str.assign(s, s + strlen(s));
+		len = strlen(s);
+		p = new char[len+1];
+		strcpy(p, s);
 	}
 
-	mString(const mString& from)
+	mString(const mString& from) : len(from.len)
 	{
-		str.assign(from.str.begin(), from.str.end());
+		p = new char[len + 1];
+		strcpy(p, from.p);
 	}
 
-	~mString() {}
+	~mString() {
+		delete [] p;
+	}
 
-	mString &operator= (const mString &from) {
-		str.assign(from.str.begin(), from.str.end());
+	mString &operator=(const mString& from) {
+		len = from.len;
+		char* p1 = new char[len + 1];
+		strcpy(p1, from.p);
+		delete [] p;
+		p = p1;
 		return *this;
 	}
 
-	mString &operator+= (const mString &from) {
-		str.insert(str.end(), from.str.begin(), from.str.end());
-		return *this;
+	mString &operator+=(const mString &from) {
+		len += from.len;
+		strcat(p, from.p);
 	}
 
 	void print() const {
-		for (int i = 0; i < str.size(); i++) {
-			cout << str[i];
+		for (int i = 0; i < len; i++) {
+			cout << p[i];
 		}
 	}
 
 private:
-	vector<char> str;
+	char *p;
+	int len;
 };
