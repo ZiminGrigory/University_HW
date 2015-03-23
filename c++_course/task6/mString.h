@@ -35,8 +35,16 @@ public:
 	}
 
 	mString &operator+=(const mString &from) {
+		char *p1 = new char[len + from.len + 1];
+		strcpy(p1, p);
+		for (int i = len; i < len + from.len; i++) {
+			p1[i] = from.p[i - len];
+		}
+		p1[len + from.len] = '\0';
+		delete []p;
+		p = p1;
 		len += from.len;
-		strcat(p, from.p);
+		return *this;
 	}
 
 	void print() const {
