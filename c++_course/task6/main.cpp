@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 
 #include "Rational.h"
-#include "tree.h"
-#include "mString.h"
+#include "Shape.h"
 
 using namespace std;
 
@@ -22,35 +22,34 @@ std::pair<int, int> firstLastSpace (const string& s) { //return (-1, -1) if stri
 	return p;
 }
 
+int aprilCount(const char* const s) {
+	int ans = 0;
+	auto ms = s;
+	while (ms) {
+		ms = strstr(ms, "April");
+		if (ms) {
+			ans++;
+			ms+=5;
+		}
+	}
+	return ans;
+}
+
 int main()
 {
-	cout << "Hello World!" << endl;
 
-	Rational r(1,3);
+	Rational r(8,6);
 	double x = r;  // x = 0.33333
 	cout << x;
+	cout << r;
 
-	//2
-	Tree<int> t;
-	t.add(1);
-	t.add(1);
-	t.add(1);
-	t.add(1);
-	bool ans = t.hasEven();
-	t.add(2);
-	ans = t.hasEven();
-	cout << ans;
 
-	//3
-	string s = "asfa sfa s";
-	auto p = firstLastSpace(s);
+	cout << aprilCount("April   Apr il Ap ril Apri lApril");
 
-	//4
-	mString s1("abc"), s2("klm");
-	s1 += s2;
-	auto s3 = s1;
 	cout << endl;
-	s1.print(); // abcklm
-	return 0;
+	Shape* s1 = new ShapeWithHole(new Rhombus(0, 100, 100, 0), 20);     // Ромб, и в нем вырезан круг радиуса 20
+	Shape* s2 = new ShapeWithHole(new Circle(200), 50);   // Прямоугольник, и в нем вырезан круг радиуса 50
+	cout << s1->area() << endl;
+	cout << s2->perim() << endl;
 }
 
