@@ -15,7 +15,7 @@ public:
 class Rhombus: public Shape
 {
 public:
-	explicit Rhombus(double xTop, double yTop, double xR, double yR);
+	Rhombus(double xTop, double yTop, double xR, double yR);
 	virtual void draw() const;
 	double area() const override;
 	double perim() const override;
@@ -26,7 +26,7 @@ protected:
 class RhombusWithDiag: public Rhombus
 {
 public:
-	explicit RhombusWithDiag(double xTop, double yTop, double xR, double yR);
+	RhombusWithDiag(double xTop, double yTop, double xR, double yR);
 	void draw() const;
 };
 
@@ -34,7 +34,7 @@ public:
 class Circle: public Shape
 {
 public:
-	explicit Circle(double radius);
+	Circle(double radius);
 	double area() const override;
 	double perim() const override;
 
@@ -44,7 +44,7 @@ private:
 
 class ShapeWithHole : public Shape{
 public:
-	explicit ShapeWithHole(Shape *shape, double radius) : mShape(shape), insShape(new Circle(radius))
+	ShapeWithHole(Shape *shape, double radius) : mShape(shape), insShape(new Circle(radius))
 	{}
 
 	ShapeWithHole(const ShapeWithHole& from) = delete;
