@@ -23,9 +23,9 @@ private:
 int NOD(int x, int y) {
 	while (x != y) {
 		if (x > y) {
-			x = x - y;
+			x -= y;
 		} else {
-			y = y - x;
+			y -= x;
 		}
 	}
 	return x;
