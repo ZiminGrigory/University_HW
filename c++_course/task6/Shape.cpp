@@ -13,7 +13,7 @@ Rhombus::Rhombus(double xTop, double yTop, double xR, double yR) : xT(xTop), yT(
 {
 }
 
-void Rhombus::draw()
+void Rhombus::draw() const
 {
 	cout
 		<< " Rhombus "
@@ -23,12 +23,12 @@ void Rhombus::draw()
 		<< ",(" << xT- xR << "," << yR << ")\n";
 }
 
-double Rhombus::area()
+double Rhombus::area() const
 {
 	return 2*(xR-xT)*(yT - yR);
 }
 
-double Rhombus::perim()
+double Rhombus::perim() const
 {
 	return 4 * distance(xT, yT, xR, yR);
 }
@@ -37,7 +37,7 @@ RhombusWithDiag::RhombusWithDiag(double xTop, double yTop, double xR, double yR)
 {
 }
 
-void RhombusWithDiag::draw()
+void RhombusWithDiag::draw() const
 {
 	Rhombus::draw();
 	cout << "    also has diag-s \n";
@@ -48,12 +48,12 @@ Circle::Circle(double radius): r(radius)
 {
 }
 
-double Circle::area()
+double Circle::area() const
 {
 	return M_PI*r*r;
 }
 
-double Circle::perim()
+double Circle::perim() const
 {
 	return 2*M_PI*r;
 }

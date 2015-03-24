@@ -9,7 +9,7 @@ public:
 	Rational(int a, int b) : a(a), b(b)
 	{
 		if (!b)
-			throw("dib by zero");
+			throw("div by zero");
 	}
 	operator double() const {
 		return static_cast<double>(a) / static_cast<double>(b);
@@ -34,10 +34,10 @@ int NOD(int x, int y) {
 ostream& operator<<(ostream& output, const Rational& r)
 {
 	if (r.a == 0) {
-		output  << "\n0";
+		output  << "0";
 		return output;
 	}
 	int c = NOD(r.a, r.b);
-	output << '\n' << r.a / c << "/" << r.b / c << '\n';
+	output <<  r.a / c << "/" << r.b / c;
 	return output;
 }
