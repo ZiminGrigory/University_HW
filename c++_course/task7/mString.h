@@ -23,7 +23,11 @@ public:
 	}
 
 	~SharedString() {
-		delete [] p;
+		if (static_cast<int>(p[0]) == 1) {
+			delete [] p;
+		} else {
+			p[0]--;
+		}
 	}
 
 	SharedString& operator=(const SharedString& from) {
