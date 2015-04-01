@@ -31,7 +31,7 @@ public:
 		cout << hour << ":" << min << "." << sec << endl;
 	}
 
-	virtual mTime* clone() const {
+	mTime* clone() const override{
 		return new time_with_sec(hour, min, sec);
 	}
 
@@ -54,6 +54,9 @@ public:
 	}
 
 	timeCollection& operator=(const timeCollection& from) {
+		if (&from == this) {
+			return *this;
+		}
 		times.clear();
 		for (size_t i=0; i<from.times.size(); i++)
 			times.push_back(from.times[i]->clone());
