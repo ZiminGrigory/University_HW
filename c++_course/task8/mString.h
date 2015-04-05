@@ -87,7 +87,7 @@ void swp(SharedString& s1, SharedString& s2)
 	s2.p= s1.p ;
 	s1.p = tmp;
 
-	s1.len = s1.len ^ s2.len;
-	s2.len= s1.len ^ s2.len;
-	s1.len = s1.len ^ s2.len;
+	int tmpp = s1.len;
+	s1.len = s2.len;
+	s2.len= tmpp;
 }

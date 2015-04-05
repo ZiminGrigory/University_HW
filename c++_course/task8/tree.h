@@ -55,8 +55,8 @@ public:
 		}
 	}
 
-	template<T>
-	friend void ForEach(Tree<T> *t, function<void(T&)> f);
+	template<typename T1, typename F>
+	friend void ForEach(Tree<T1> *t, F f);
 
 public: // can not write private or ptotected; get error ... is private ... within this context, but it's compiler's bug google says
 		// but may be i'm wrong
@@ -79,14 +79,14 @@ public: // can not write private or ptotected; get error ... is private ... with
 	Node *head = nullptr;
 };
 
-template <typename T>
-void ForEach(Tree<T> *t, function<void(T&)> f) {
+template <typename T, typename F>
+void ForEach(Tree<T> *t, F f) {
 	queue<typename Tree<T>::Node *> q;
 	if (t->head)
 		q.push(t->head);
 
 	while (!q.empty()) {
-		typename Tree<T>::Node *v = q.front();
+		auto v = q.front();
 		q.pop();
 		f(v->value);
 		if (v->left)
