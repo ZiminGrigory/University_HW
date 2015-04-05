@@ -25,39 +25,15 @@ void swp(T& a, T& b) {
 }
 
 template <typename T>
-void printC(const T& l) {
+void print1(const T& l) {
 	typename T::const_iterator pos = l.begin();
-	typename T::const_iterator end(l.end());
-	for (; pos!=end; ++pos) {
-		cout << *pos << ' ';
-	}
+	copy(l.begin(), l.end(), ostream_iterator<decltype(*pos)>(cout, " "));
 }
 
 template <typename T>
-void print1(const list<T>& l) {
-	copy(l.begin(), l.end(), ostream_iterator<T>(cout, " "));
-}
-
-template <typename T>
-void print2(const list<T>& l) {
-	list<T> t = l;
-	while (!t.empty())
-	{
-		cout << t.front() << " ";
-		t.pop_front();
-	}
-}
-
-template <typename T>
-void print1(const vector<T>& v) {
-	copy(v.begin(), v.end(), ostream_iterator<T>(cout, " "));
-}
-
-template <typename T>
-void print2(const vector<T>& v) {
-	for (size_t i = 0; i <v.size(); i++)
-	{
-		cout << v[i] << " ";
+void print2(const T& l) {
+	for (auto i: l) {
+		cout << i << " ";
 	}
 }
 
@@ -77,7 +53,7 @@ int main()
 	l.push_back(1);
 	l.push_back(2);
 	l.push_back(3);
-	printC(l);
+	print1(l);
 	print2(l);
 
 	//5
