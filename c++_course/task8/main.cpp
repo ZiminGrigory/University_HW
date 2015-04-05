@@ -26,13 +26,13 @@ void swp(T& a, T& b) {
 
 template <typename T>
 void print1(const T& l) {
-	typename T::const_iterator pos = l.begin();
+	auto pos = l.begin();
 	copy(l.begin(), l.end(), ostream_iterator<decltype(*pos)>(cout, " "));
 }
 
 template <typename T>
 void print2(const T& l) {
-	for (auto i: l) {
+	for (auto& i: l) {
 		cout << i << " ";
 	}
 }
