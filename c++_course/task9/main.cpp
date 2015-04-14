@@ -10,7 +10,7 @@ using namespace std;
 template <class T>
 struct queue {
 public:
-	void push(T t) {
+	void push(const T& t) {
 		pseudoQ.push_front(t);
 	}
 	T pop() {
@@ -37,13 +37,9 @@ bool mCompare1(int a, int b) {
 }
 
 void mSort(vector<int>& v, int n) {
-	sort(v.begin(), v.end(), [n](int x, int y){
-		int res1 = 0, res2 = 0;
-		for (int i = 1; i <= n; i++) {
-			res1 += x % 10 , res2 += y % 10 ;
-			x /= 10, y /= 10;
-		}
-		return res1 < res2;
+	int k = pow(10,n);
+	sort(v.begin(), v.end(), [k](int x, int y){
+		return x % k < y % k;
 	});
 }
 
@@ -59,12 +55,8 @@ int main()
 	int value = 0;
 	for (int i = 1; i <=n; i++) {
 		cin >> s >> value;
-		value = value == 5 ? 1: 0;
-		if (table.find(s) != table.end()) {
-			table[s] += value;
-		} else {
-			table.insert(make_pair(s,value));
-		}
+		int counter = value == 5 ? 1: 0;
+		table[s] += counter;
 	}
 
 	for (auto &p : table) {
@@ -87,8 +79,8 @@ int main()
 
 	//3 Описать функцию с параметрами v и n, которая сортирует данный вектор целых чисел v по последним n цифрам.
 	// При этом надо использовать стандартную функцию sort (и, видимо, лямбда выражения со списком захвата).
-	vector<int> mv2{222,2222,113,1345,0};
-	mSort(mv2,2);
+	vector<int> mv2{51,42,33,24,15};
+	mSort(mv2, 1);
 	copy(mv2.begin(), mv2.end(), ostream_iterator<int>(cout, " "));
 
 	//4Шаблон queue  - очередь (аналог stack, но first in – first out).
