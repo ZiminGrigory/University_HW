@@ -36,11 +36,26 @@ bool mCompare1(int a, int b) {
 	return digSum(a) < digSum(b);
 }
 
-void mSort(vector<int>& v, int n) {
+void mSort(vector<int>& v, int n) { // не тратя память, но много делений
 	int k = pow(10,n);
 	sort(v.begin(), v.end(), [k](int x, int y){
 		return x % k < y % k;
 	});
+}
+
+
+void mSort2(vector<int>& v, int n) { // тратим больше памяти, но меньше делений
+	int k = pow(10,n);
+	vector<pair<int,int>> tmp;
+	for (auto a: v) {
+		tmp.push_back(make_pair(a, a%k));
+	}
+	sort(tmp.begin(), tmp.end(), [](pair<int,int> x, pair<int,int> y){
+		return x.second < y.second;
+	});
+	for (size_t i = 0; i < tmp.size(); i++) {
+		v[i] = tmp[i].first;
+	}
 }
 
 
