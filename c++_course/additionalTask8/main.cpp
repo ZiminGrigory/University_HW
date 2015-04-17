@@ -22,6 +22,8 @@ int getScndMax(const list<int> &l) {
 		if (*tmp > m1) {
 			m2 = m1;
 			m1 = *tmp;
+		} else if (*tmp > m2) {
+			m2 = *tmp;
 		}
 		tmp++;
 	}
@@ -42,8 +44,9 @@ int countOfEquals(const list<int> &l) {
 
 int main()
 {
-	//1
-//	list<int> l{1,2,3,4,3,2,5};
+//	//1
+//	//list<int> l{1,2,3,4,3,2,5};
+//	list<int> l{1,5,3};
 //	cout << getScndMax(l);
 
 
