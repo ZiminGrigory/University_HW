@@ -2,6 +2,8 @@
 #include <map>
 #include <vector>
 #include <list>
+#include <algorithm>
+#include <functional>
 
 #include "mTime.h"
 
@@ -10,34 +12,29 @@
 // for example we know that int -> double... but what's a point for value_type or decltype
 // conclusion: middle value has the same type as vectror::value_type
 template <class T>
-typename T::value_type midlValue(T b)
+typename T::value_type sumOFpositive(T b)
 {
 	typename T::value_type sum = 0;
-	int i = 0;
 	for (auto &p : b) {
 		if (p > 0) {
 			sum += p;
-			i++;
 		}
 	}
-	return sum / i;
+	return sum;
 }
 
 template <class T>
-auto midlValue2(T b) -> typename std::remove_reference<decltype(*b.begin())>::type
+auto sumOFpositive2(T b) -> typename std::remove_reference<decltype(*b.begin())>::type
 {
 	typename std::remove_reference<decltype(*b.begin())>::type sum = 0;
-	int i = 0;
 	for (auto &p : b) {
 		if (p > 0) {
 			sum += p;
-			i++;
 		}
 	}
-	return sum / i;
+	return sum;
 }
 
-using namespace std;
 
 int digSum (int a) {
 	int res = 0;
@@ -48,24 +45,28 @@ int digSum (int a) {
 	return res;
 }
 
+namespace mNameSpace{
 template <class T>
-T numeric_limits()
-{}
+struct numeric_limits{
+	static T max();
+};
 
 template <>
-double numeric_limits<double>(){
+double numeric_limits<double>::max() {
 	return 1.7e+308;
 }
 
 template <>
-int numeric_limits<int>(){
+int numeric_limits<int>::max(){
 	return 2147483647;
 }
 
 template <>
-long long numeric_limits<long long>(){
+long long numeric_limits<long long>::max(){
 	return 9223372036854775807;
 }
+}
+using namespace std;
 
 int main()
 {
@@ -94,24 +95,43 @@ int main()
 	 * ищет среднее арифметическое входящих в него положительных элементов.
 	 * (1.5 балла за 2 варианта – с value_type и decltype)
 	 */
-	vector<int> vec{1,2,3,4,0};
-	cout << midlValue2(vec);
-	cout << midlValue(vec);
+	vector<int> vec1{1,2,3,4,0};
+	cout << sumOFpositive2(vec1);
+	cout << sumOFpositive(vec1);
 
-	//3
-	/*Описать шаблон numeric_limits
-		(на самом деле, есть такой стандартный шаблон, но мы пробуем описать его сами).
-		numeric_limits<T>::max() – максимальное значение, которое может принимать тип T.
+//	//3
+//	/*Описать шаблон numeric_limits
+//		(на самом деле, есть такой стандартный шаблон, но мы пробуем описать его сами).
+//		numeric_limits<T>::max() – максимальное значение, которое может принимать тип T.
 
-		Пример вызова:
-		cout <<
-		 numeric_limits<int>::max();
-		cout << numeric_limits
-		 <unsigned short>::max();
+//		Пример вызова:
+//		cout <<
+//		 numeric_limits<int>::max();
+//		cout << numeric_limits
+//		 <unsigned short>::max();
+//	 */
+	cout << mNameSpace::numeric_limits<long long>::max() << endl << mNameSpace::numeric_limits<double>::max();
+
+	//4
+	/*
+	 * Дан вектор из векторов целых чисел. Проверить, верно ли, что есть хотя бы один вектор
+	 * , в котором все числа кончаются на одну и ту же цифру.
+		Пожалуйста, решите эту задачу используя стандартные алгоритмы.
+	Замечания: в этой задаче желательно самим никаких циклов не писать
+	, только использовать стандартные функции. Но если так не получится, можете использовать циклы.
 	 */
-	cout << numeric_limits<long long>() << endl << numeric_limits<double>();
+	vector<vector<int>> vec{{1,231,51,1},{-12,-1,1},{1,0,0,0}};
+	bool ans = any_of(
+		vec.begin()
+		, vec.end()
+		, [](const vector<int>& a) {
+			int dig = *a.begin() % 10;
+			return all_of(a.begin(), a.end(), [dig](int a){return a %10 == dig;});
+		}
+	);
+	cout << ans << endl;
 
-	//4 done
+
 	//5
 /*	Переписать задачу про timeContainer с помощью unique_ptr.
 
