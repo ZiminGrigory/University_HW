@@ -39,6 +39,11 @@ public:
 		map1[number] = name;
 		map2[name] = number;
 	}
+	/// int birthday : 12.11.84 -> 121184
+	void addAddresAndBirthday(const string &address, const string &name, int birthday) {
+		mAddress.insert(make_pair(address, name));
+		mBirthday.insert(make_pair(birthday, name));
+	}
 	string getName(int number) {
 		return map1[number];
 	}
@@ -48,6 +53,8 @@ public:
 private:
 	map<int, string> map1;
 	map<string, int> map2;
+	multimap<string, string> mAddress;
+	multimap<int, string> mBirthday;
 };
 
 
