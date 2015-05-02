@@ -54,10 +54,9 @@ int main()
 	int table[256]{0};
 	for (int j = 1; j < 256; j++) {
 		i = j;
-		i = (i & 0x5555) + ((i >> 1) & 0x5555);
-		i = (i & 0x3333) + ((i >> 2) & 0x3333);
-		i = (i & 0x0f0f) + ((i >> 4) & 0x0f0f);
-		i = (i & 0x00ff) + ((i >> 8) & 0x00ff);
+		i = (i & 0x55) + ((i >> 1) & 0x55);
+		i = (i & 0x33) + ((i >> 2) & 0x33);
+		i = (i & 0x0f) + ((i >> 4) & 0x0f);
 		table[j] = i;
 	}
 	char a[100000] = "asdasfsfasfafqwfseghghywaefvawefawekyfwaefrkwaevktaweeafvaewkfwae";
